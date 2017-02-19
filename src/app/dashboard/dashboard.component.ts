@@ -24,10 +24,8 @@ export class DashboardComponent implements OnInit {
     console.log('Dashboard loaded');
   }
 
-  signOut(): void {
-    console.log("Password authentication");
-    // Validate user credentials with Authentication service
-    this.authenticationService.signOut();
+  goTo(url: String): void {
+    this.navigationService.goTo(url);
   }
 
 }

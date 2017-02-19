@@ -16,4 +16,7 @@ export class NavigationService {
   public goToLogin() {
     this.router.navigate(['/login']);
   }
+  public goTo(url: String) {
+    this.router.navigate([url]);
+  }
 }

@@ -12,8 +12,9 @@ import { AlertComponent } from './_directives/index';
 import { AlertService, AuthenticationService, NavigationService } from './_services/index';
 import { AuthGuard } from './_guards/index';
 import { LoginComponent } from './login/index';
+import { MenuComponent } from './menu/index';
 import { DashboardComponent } from './dashboard/index';
-
+import { DeliveryListComponent } from './delivery/index';
 
 // Firebase configuration
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
@@ -44,7 +45,9 @@ const myFirebaseAuthConfig = {
     AppComponent,
     AlertComponent,
     LoginComponent,
+    MenuComponent,
     DashboardComponent,
+    DeliveryListComponent,
   ],
   providers: [
     AuthenticationService,

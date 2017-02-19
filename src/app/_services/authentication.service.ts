@@ -10,11 +10,12 @@ import 'rxjs/add/operator/map'
 export class AuthenticationService {
 
   private authStateSubscriber = new Subject<any>();
+  private userLoggedIn = false;
 
   constructor(
     private af: AngularFire,
     private router: Router,
-    private authGuard: AuthGuard
+    private authGuard: AuthGuard,
   ) {
     this.af.auth.subscribe((auth) => {
       // Constantly observe authentication state
@@ -25,6 +26,10 @@ export class AuthenticationService {
 
   public authState(): Observable<any> {
     return this.authStateSubscriber.asObservable();
+  }
+
+  public isUserLoggedIn(): boolean {
+    return this.userLoggedIn;
   }
 
   private authStateMessage(message: String, auth?: any): {result: String, auth: any} {
@@ -41,6 +46,7 @@ export class AuthenticationService {
       // User is logged in
       // Tell Auth Guard to save user in local storage...
       this.authGuard.login(auth).then((success)=>{
+        this.userLoggedIn = true;
         // ... and inform subscriber that login was successfull
         this.authStateSubscriber.next(this.authStateMessage('login', this.af.auth));
       }
@@ -49,6 +55,7 @@ export class AuthenticationService {
       // User logged out
       // Tell Auth Guard to remove user from local storage...
       this.authGuard.logout().then(()=>{
+        this.userLoggedIn = false;
         // ... and inform subscriber that logout was successfull
         this.authStateSubscriber.next(this.authStateMessage('logout'));
       });
