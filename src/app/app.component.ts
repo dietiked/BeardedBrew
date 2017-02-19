@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { AlertService } from './_services/index';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  moduleId: module.id,
+  selector: 'app-component',
+  templateUrl: './app.component.html'
 })
+
 export class AppComponent {
-  title = 'app works!';
+  
 }
