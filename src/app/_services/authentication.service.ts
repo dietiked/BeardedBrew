@@ -10,7 +10,6 @@ import 'rxjs/add/operator/map'
 export class AuthenticationService {
 
   private authStateSubscriber = new Subject<any>();
-  private userLoggedIn = false;
 
   constructor(
     private af: AngularFire,
@@ -29,7 +28,7 @@ export class AuthenticationService {
   }
 
   public isUserLoggedIn(): boolean {
-    return this.userLoggedIn;
+    return this.authGuard.isUserPersistent();
   }
 
   private authStateMessage(message: String, auth?: any): {result: String, auth: any} {
@@ -45,8 +44,11 @@ export class AuthenticationService {
     if (auth) {
       // User is logged in
       // Tell Auth Guard to save user in local storage...
-      this.authGuard.login(auth).then((success)=>{
-        this.userLoggedIn = true;
+      this.authGuard.login(auth)
+      .catch((error) => {
+        console.log('Auth guard cannot save to local storage');
+      })
+      .then((success)=>{
         // ... and inform subscriber that login was successfull
         this.authStateSubscriber.next(this.authStateMessage('login', this.af.auth));
       }
@@ -54,8 +56,11 @@ export class AuthenticationService {
     } else {
       // User logged out
       // Tell Auth Guard to remove user from local storage...
-      this.authGuard.logout().then(()=>{
-        this.userLoggedIn = false;
+      this.authGuard.logout()
+      .catch((error) => {
+        console.log('Auth guard cannot remove from local storage');
+      })
+      .then((success)=>{
         // ... and inform subscriber that logout was successfull
         this.authStateSubscriber.next(this.authStateMessage('logout'));
       });
