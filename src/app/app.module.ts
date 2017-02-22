@@ -9,12 +9,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule }     from './app-routing.module';
 
 import { AlertComponent } from './_directives/index';
-import { AlertService, AuthenticationService, NavigationService } from './_services/index';
+import { AlertService, AuthenticationService, NavigationService, DeliveryService } from './_services/index';
 import { AuthGuard } from './_guards/index';
 import { LoginComponent } from './login/index';
 import { MenuComponent } from './menu/index';
 import { DashboardComponent } from './dashboard/index';
-import { DeliveryListComponent } from './delivery/index';
+import { DeliveriesComponent, DeliveryComponent, NewDeliveryComponent } from './delivery/index';
 
 // Firebase configuration
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
@@ -47,13 +47,14 @@ const myFirebaseAuthConfig = {
     LoginComponent,
     MenuComponent,
     DashboardComponent,
-    DeliveryListComponent,
+    DeliveriesComponent, DeliveryComponent, NewDeliveryComponent,
   ],
   providers: [
     AuthenticationService,
     AlertService,
     AuthGuard,
-    NavigationService
+    NavigationService,
+    DeliveryService
   ],
   bootstrap: [AppComponent]
 })

@@ -16,7 +16,16 @@ export class NavigationService {
   public goToLogin() {
     this.router.navigate(['/login']);
   }
-  public goTo(url: String) {
+  public goTo(url: string) {
     this.router.navigate([url]);
+  }
+  public goToDeliveries() {
+    this.router.navigate(['/deliveries']);
+  }
+  public goToNewDelivery() {
+    this.router.navigate(['/deliveries/new']);
+  }
+  public goToDeliveryWithKey(key: string) {
+    this.router.navigate(['/deliveries', key]);
   }
 }

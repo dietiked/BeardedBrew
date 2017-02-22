@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
     console.log('Dashboard loaded');
   }
 
-  goTo(url: String): void {
+  goTo(url: string): void {
     this.navigationService.goTo(url);
   }
 
