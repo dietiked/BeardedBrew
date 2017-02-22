@@ -12,16 +12,16 @@ export class NewDeliveryComponent {
 
   delivery = new Delivery();
 
-  constructor (private deliveryService: DeliveryService, private navigator: NavigationService) {
+  constructor (private deliveryService: DeliveryService, private navigationService: NavigationService) {
   }
 
   add(delivery: Delivery) {
     console.log('New delivery', delivery);
     var key = this.deliveryService.addDelivery(delivery);
-    this.navigator.goToDeliveryWithKey(key);
+    this.navigationService.goToDeliveryWithKey(key);
   }
 
   cancel() {
-    this.navigator.goToDeliveries();
+    this.navigationService.goToDeliveries();
   }
 }

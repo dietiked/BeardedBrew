@@ -6,6 +6,7 @@ import { Delivery } from '../_models/delivery';
 export class DeliveryService {
 
   deliveries: FirebaseListObservable<any[]>;
+  currentDelivery: FirebaseObjectObservable<any>;
   deliveriesTable = '/deliveries';
 
   constructor(private af: AngularFire) {
@@ -22,7 +23,14 @@ export class DeliveryService {
 
   public getDeliveryWithKey(key: string) {
     var url = this.deliveriesTable + '/' + key;
-    return this.af.database.object(url);
+    this.currentDelivery = this.af.database.object(url);
+    return this.currentDelivery;
+    //return this.currentDelivery;
+  }
+
+  public updateDelivery(delivery: Delivery) {
+    console.log('Delivery', this.currentDelivery);
+    this.currentDelivery.update(delivery.normalize());
   }
 
 }

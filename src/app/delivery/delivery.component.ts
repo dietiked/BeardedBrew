@@ -23,14 +23,16 @@ export class DeliveryComponent implements OnInit {
   ngOnInit() {
     this.route.params
       .switchMap((params: Params) => this.deliveryService.getDeliveryWithKey(params['id']))
-      .subscribe(delivery => {this.delivery = delivery});
+      .subscribe(delivery => {
+        this.delivery.initWithFirebaseObject(delivery);
+      });
   }
 
-  edit(deliveryId) {
-    this.navigationService.goTo('deliveries/'+deliveryId);
+  update(delivery) {
+    this.deliveryService.updateDelivery(this.delivery);
   }
 
-  goToNewDelivery() {
-    this.navigationService.goTo('deliveries/new');
+  cancel() {
+    this.navigationService.goToDeliveries();
   }
 }
