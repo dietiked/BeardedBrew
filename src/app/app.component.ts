@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AlertService } from './_services/index';
 
 @Component({
   moduleId: module.id,
@@ -8,5 +7,5 @@ import { AlertService } from './_services/index';
 })
 
 export class AppComponent {
-  
+
 }

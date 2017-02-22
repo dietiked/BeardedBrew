@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         // ! VALIDATE TOKEN WITH FIREBASE !
-        if (localStorage.getItem(this.localStorageIdentifier)) {
+        if (this.isUserPersistent()) {
             // logged in so return true
             return true;
         }
@@ -25,6 +25,13 @@ export class AuthGuard implements CanActivate {
         return false;
     }
 
+    public isUserPersistent(): boolean {
+      if (localStorage.getItem(this.localStorageIdentifier)) {
+        return true;
+      }
+      return false;
+    }
+
     public login(auth: any): Promise<any> {
       // Save user information in local storage
       localStorage.setItem(this.localStorageIdentifier, JSON.stringify(auth))
@@ -32,7 +39,14 @@ export class AuthGuard implements CanActivate {
       // - resolve if user has been saved in local storage
       // - reject if not
       return new Promise(function(resolve, reject) {
-        resolve();
+        // Check if local storage has been saved.
+        if (this.isUserPersistent()) {
+          // If true, resolve
+          resolve();
+        } else {
+          // If false, reject
+          reject();
+        }
       });
     }
 
@@ -43,7 +57,13 @@ export class AuthGuard implements CanActivate {
       // - resolve if user has been removed from local storage
       // - reject if not
       return new Promise(function(resolve, reject) {
-        resolve();
+        if (! this.isUserPersistent()) {
+          // If false, resolve
+          resolve();
+        } else {
+          // If true, reject
+          reject();
+        }
       });
     }
 
