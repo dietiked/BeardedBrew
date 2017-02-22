@@ -20,4 +20,8 @@ export class NewDeliveryComponent {
     var key = this.deliveryService.addDelivery(delivery);
     this.navigator.goToDeliveryWithKey(key);
   }
+
+  cancel() {
+    this.navigator.goToDeliveries();
+  }
 }

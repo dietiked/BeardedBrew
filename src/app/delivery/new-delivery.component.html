@@ -14,6 +14,7 @@
           <label for="deliveryId">Store</label>
           <input type="text" class="form-control" id="deliveryId" placeholder="Delivery ID" [(ngModel)]="delivery.deliveryId">
         </div>
+        <button class="btn btn-default" (click)="cancel()">Cancel</button>
         <button class="btn btn-primary" (click)="add(delivery)">Add</button>
     </div>
   </div>
