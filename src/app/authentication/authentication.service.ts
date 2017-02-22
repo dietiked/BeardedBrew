@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
-import { AuthGuard } from '../_guards/index';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map'
+
+import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AuthGuard } from './auth.guard';
 
 @Injectable()
 export class AuthenticationService {

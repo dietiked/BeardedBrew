@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthenticationService, NavigationService } from '../_services/index';
+import { NavigationService } from '../_services/index';
+import { AuthenticationService } from '../authentication/index';
 
 @Component({
   moduleId: module.id,
