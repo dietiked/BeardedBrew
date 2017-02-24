@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Delivery } from '../_models/index';
-import { DeliveryService, NavigationService } from '../_services/index';
+import { Delivery, DeliveryService, BeardedBrewNavigationService } from '../index';
 
 @Component({
   moduleId: module.id,
-  templateUrl: 'new-delivery.component.html'
+  templateUrl: './new-delivery.component.html'
 })
 
 export class NewDeliveryComponent {
 
   delivery = new Delivery();
 
-  constructor (private deliveryService: DeliveryService, private navigationService: NavigationService) {
+  constructor (
+    private deliveryService: DeliveryService,
+    private navigationService: BeardedBrewNavigationService
+  ) {
   }
 
   add(delivery: Delivery) {

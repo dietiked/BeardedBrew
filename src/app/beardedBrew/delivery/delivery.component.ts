@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
-import { DeliveryService, NavigationService } from '../_services/index';
-import { Delivery } from '../_models/index';
+import { Delivery, DeliveryService, BeardedBrewNavigationService } from '../index';
 
 @Component({
   moduleId: module.id,
-  templateUrl: 'delivery.component.html'
+  templateUrl: './delivery.component.html'
 })
 
 export class DeliveryComponent implements OnInit {
@@ -16,7 +15,7 @@ export class DeliveryComponent implements OnInit {
 
   constructor (
     private deliveryService: DeliveryService,
-    private navigationService: NavigationService,
+    private navigationService: BeardedBrewNavigationService,
     private route: ActivatedRoute,
   ) { }
 

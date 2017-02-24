@@ -21,4 +21,8 @@ export class DashboardComponent implements OnInit {
     this.navigationService.goTo(url);
   }
 
+  startBeardedBrew() {
+    this.navigationService.startBeardedBrew();
+  }
+
 }

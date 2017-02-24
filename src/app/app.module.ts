@@ -7,12 +7,16 @@ import { HttpModule } from '@angular/http';
 // Application
 import { AppComponent } from './app.component';
 import { AppRoutingModule }     from './app-routing.module';
-import { AuthenticationModule } from './authentication/authentication.module';
+import { AuthenticationModule } from './authentication/import';
 
-import { NavigationService, DeliveryService } from './_services/index';
+// Plattform services
+import { NavigationService } from './_services/index';
+// Plattform components
 import { MenuComponent } from './menu/index';
 import { DashboardComponent } from './dashboard/index';
-import { DeliveriesComponent, DeliveryComponent, NewDeliveryComponent } from './delivery/index';
+
+// Apps
+import { BeardedBrewModule } from './beardedBrew/import';
 
 // Firebase configuration
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
@@ -36,19 +40,19 @@ const myFirebaseAuthConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule,
     AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig),
     AuthenticationModule,
+    BeardedBrewModule,
+    //BeardedBrewRouting,
+    AppRoutingModule,
   ],
   declarations: [
     AppComponent,
     MenuComponent,
-    DashboardComponent,
-    DeliveriesComponent, DeliveryComponent, NewDeliveryComponent,
+    DashboardComponent
   ],
   providers: [
-    NavigationService,
-    DeliveryService
+    NavigationService
   ],
   bootstrap: [AppComponent]
 })
