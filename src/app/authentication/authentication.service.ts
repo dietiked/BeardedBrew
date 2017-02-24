@@ -5,21 +5,22 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map'
 
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard, AuthenticationMessage } from './index';
 
 @Injectable()
 export class AuthenticationService {
 
   private authStateSubscriber = new Subject<any>();
+  private message = new AuthenticationMessage();
 
   constructor(
     private af: AngularFire,
     private router: Router,
-    private authGuard: AuthGuard,
+    private authGuard: AuthGuard
   ) {
     this.af.auth.subscribe((auth) => {
       // Constantly observe authentication state
-      console.log('Authentication service listen to subscription');
+      console.log('Authentication service listen to subscription', auth);
       this.manageAuthState(auth);
     });
   }
@@ -30,13 +31,6 @@ export class AuthenticationService {
 
   public isUserLoggedIn(): boolean {
     return this.authGuard.isUserPersistent();
-  }
-
-  private authStateMessage(message: String, auth?: any): {result: String, auth: any} {
-    return {
-      result: message,
-      auth: auth
-    }
   }
 
   // Check if authentication response ist valid or not
@@ -51,7 +45,8 @@ export class AuthenticationService {
       })
       .then((success)=>{
         // ... and inform subscriber that login was successfull
-        this.authStateSubscriber.next(this.authStateMessage('login', this.af.auth));
+        this.message.loginMessage();
+        this.authStateSubscriber.next(this.message);
       }
     );
     } else {
@@ -63,7 +58,8 @@ export class AuthenticationService {
       })
       .then((success)=>{
         // ... and inform subscriber that logout was successfull
-        this.authStateSubscriber.next(this.authStateMessage('logout'));
+        this.message.logoutMessage();
+        this.authStateSubscriber.next(this.message);
       });
     }
   }
@@ -71,16 +67,22 @@ export class AuthenticationService {
   // Error handling if authentication request fails
   private authenticationRequestDidFail(error: any) {
     console.log('Authentication service error', error);
-    this.authStateSubscriber.next(this.authStateMessage('error'));
+    if (
+      error['code'] == 'auth/user-not-found' ||
+      error['code'] == 'auth/wrong-username'
+    ) {
+      var errorMsg = 'Wrong username or password';
+      this.message.errorMessage(errorMsg);
+      this.authStateSubscriber.next(this.message);
+    }
   }
 
   public signInWithPassword(username: String, password: String) {
     var credentials = {email: username, password: password}
     this.af.auth.login(credentials)
-    .catch((error) => {
-      console.log('Catch authentication service error');
+    .catch(error => {
       this.authenticationRequestDidFail(error);
-    })
+    });
   }
 
   public signInWithGoogle() {
