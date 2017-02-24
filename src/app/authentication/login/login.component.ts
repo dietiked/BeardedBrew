@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlertService, AuthenticationService, NavigationService } from '../_services/index';
+import { AlertService } from '../alert/index';
+
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AuthenticationService, AuthenticationMessage } from '../index';
 
 @Component({
   moduleId: module.id,
@@ -15,19 +17,21 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private navigationService: NavigationService
+    private alertService: AlertService,
+    private router: Router
   ) {
     this.authenticationService.authState().subscribe(
-      (state) => {
-        if (state.result == 'login') { // User is logged in
-          this.navigationService.goToDashboard();
-        } else if (state.result == 'error') { // Wrong username or password
+      (message: AuthenticationMessage) => {
+        if (message.isLogin()) { // User is logged in
+          this.router.navigate(['dashboard']);
+        } else if (message.isError()) { // Wrong username or password
+          this.alertService.error(message.message);
           console.log('Display message: wrong username or password');
-        } else if (state.result == 'logout') { // User is not logged in
-          this.navigationService.goToLogin();
+        } else if (message.isLogout()) { // User is not logged in
+          this.router.navigate(['login']);
         }
       }
-  );
+    );
   }
 
   ngOnInit(): void {
@@ -37,14 +41,6 @@ export class LoginComponent implements OnInit {
     console.log("Password authentication");
     // Validate user credentials with Authentication service
     this.authenticationService.signInWithPassword(this.user.email, this.user.password)
-  }
-
-  signinWithGoogle(): void {
-    console.log("Google authentication");
-    this.authenticationService.signInWithGoogle()
-    .then((auth) => {
-      this.navigationService.goToDashboard();
-    });
   }
 
 

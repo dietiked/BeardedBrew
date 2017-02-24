@@ -7,11 +7,9 @@ import { HttpModule } from '@angular/http';
 // Application
 import { AppComponent } from './app.component';
 import { AppRoutingModule }     from './app-routing.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 
-import { AlertComponent } from './_directives/index';
-import { AlertService, AuthenticationService, NavigationService, DeliveryService } from './_services/index';
-import { AuthGuard } from './_guards/index';
-import { LoginComponent } from './login/index';
+import { NavigationService, DeliveryService } from './_services/index';
 import { MenuComponent } from './menu/index';
 import { DashboardComponent } from './dashboard/index';
 import { DeliveriesComponent, DeliveryComponent, NewDeliveryComponent } from './delivery/index';
@@ -39,20 +37,16 @@ const myFirebaseAuthConfig = {
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig)
+    AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig),
+    AuthenticationModule,
   ],
   declarations: [
     AppComponent,
-    AlertComponent,
-    LoginComponent,
     MenuComponent,
     DashboardComponent,
     DeliveriesComponent, DeliveryComponent, NewDeliveryComponent,
   ],
   providers: [
-    AuthenticationService,
-    AlertService,
-    AuthGuard,
     NavigationService,
     DeliveryService
   ],
