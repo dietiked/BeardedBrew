@@ -13,7 +13,7 @@ export class DeliveryService {
     this.deliveries = this.af.database.list(this.deliveriesTable);
   }
 
-  public getDeliveries() {
+  public getDeliveries(): FirebaseListObservable<any[]> {
     return this.deliveries;
   }
 
@@ -21,11 +21,10 @@ export class DeliveryService {
     return this.deliveries.push(delivery).key;
   }
 
-  public getDeliveryWithKey(key: string) {
+  public getDeliveryWithKey(key: string): FirebaseObjectObservable<any> {
     var url = this.deliveriesTable + '/' + key;
     this.currentDelivery = this.af.database.object(url);
     return this.currentDelivery;
-    //return this.currentDelivery;
   }
 
   public updateDelivery(delivery: Delivery) {

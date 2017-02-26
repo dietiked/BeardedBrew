@@ -1,9 +1,9 @@
 <div class="col-md-12">
   <h1>Deliveries <button class="btn btn-default" (click)="goToNewDelivery()">New delivery</button></h1>
-
+  <loader [isLoading]="isLoading"></loader>
   <div class="row">
     <div class="col-md-12">
-      <table class="table">
+      <table class="table" *ngIf="!isLoading">
         <tr>
           <th>Date</th>
           <th>Store</th>

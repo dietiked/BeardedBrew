@@ -12,6 +12,7 @@ import { Delivery, DeliveryService, BeardedBrewNavigationService } from '../inde
 export class DeliveryComponent implements OnInit {
 
   delivery = new Delivery();
+  isLoading = true;
 
   constructor (
     private deliveryService: DeliveryService,
@@ -24,6 +25,7 @@ export class DeliveryComponent implements OnInit {
       .switchMap((params: Params) => this.deliveryService.getDeliveryWithKey(params['id']))
       .subscribe(delivery => {
         this.delivery.initWithFirebaseObject(delivery);
+        this.isLoading = false;
       });
   }
 

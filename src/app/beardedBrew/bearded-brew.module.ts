@@ -8,6 +8,8 @@ import { HttpModule } from '@angular/http';
 // Plattform modules and services
 import { AuthenticationModule } from '../authentication/import';
 import { NavigationService } from '../_services/index';
+// Plattform directives
+import { LoaderComponent } from '../_directives/index';
 
 // Apps modules and services
 import { BeardedBrewNavigationService } from './index';
@@ -31,6 +33,7 @@ import {
     BeardedBrewRouting
   ],
   declarations: [
+    LoaderComponent,
     BeardedBrewHomeComponent,
     DeliveriesComponent,
     DeliveryComponent,

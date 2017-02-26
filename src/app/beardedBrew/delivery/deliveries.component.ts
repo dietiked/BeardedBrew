@@ -10,12 +10,16 @@ import { DeliveryService, BeardedBrewNavigationService } from '../index';
 export class DeliveriesComponent {
 
   deliveries = <any>[];
+  isLoading = true;
 
   constructor (
     private deliveryService: DeliveryService,
     private navigationService: BeardedBrewNavigationService
   ) {
-    this.deliveries = deliveryService.getDeliveries();
+    this.deliveries = deliveryService.getDeliveries()
+    this.deliveries.subscribe(x => {
+      this.isLoading = false;
+    })
   }
 
   edit(key) {
