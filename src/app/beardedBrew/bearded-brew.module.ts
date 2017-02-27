@@ -20,7 +20,8 @@ import {
   DeliveryService,
   DeliveriesComponent,
   DeliveryComponent,
-  NewDeliveryComponent
+  NewDeliveryComponent,
+  ItemDeliveryService,
 } from './index';
 
 // Definition
@@ -42,7 +43,8 @@ import {
   providers: [
     NavigationService,
     BeardedBrewNavigationService,
-    DeliveryService
+    DeliveryService,
+    ItemDeliveryService,
   ]
 })
 export class BeardedBrewModule { }

@@ -1,5 +1,5 @@
 <div class="col-md-12">
-  <h1>Edit delivery {{delivery.$key}}</h1>
+  <h1>Delivery {{delivery.$key}}</h1>
   <loader [isLoading]="isLoading"></loader>
   <div class="row" *ngIf="!isLoading">
     <div class="col-md-12">
@@ -19,4 +19,29 @@
         <button class="btn btn-primary" (click)="update(delivery)">Update</button>
     </div>
   </div>
+
+  <div class="row" *ngIf="!isLoadingItems" style="margin-top: 50px;">
+    <div class="col-md-12">
+      <h2>Items <button class="btn btn-default" (click)="addItemRow()">Add item</button></h2>
+      <loader [isLoading]="isLoadingItems"></loader>
+      <table class="table">
+        <tr>
+          <th>Item</th>
+          <th>Unit</th>
+          <th>Unit price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+        <tr *ngFor="let item of items">
+          <td><input type="text" class="form-control" id="item-name-{{item.$key}}" [(ngModel)]="item.name"></td>
+          <td><input type="text" class="form-control" id="item-unit-{{item.$key}}" [(ngModel)]="item.unit"></td>
+          <td><input type="text" class="form-control" id="item-price-{{item.$key}}" [(ngModel)]="item.price"></td>
+          <td><input type="text" class="form-control" id="item-quantity-{{item.$key}}" [(ngModel)]="item.quantity"></td>
+          <td><input type="text" class="form-control" id="item-total-{{item.$key}}" [(ngModel)]="item.total"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+
 </div>

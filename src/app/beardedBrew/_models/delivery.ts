@@ -1,10 +1,12 @@
 export class Delivery {
+  $key: string;
   date: any;
   store: string;
   deliveryId: string;
   total = 0;
 
   initWithFirebaseObject(delivery: any) {
+    this.$key = delivery.$key;
     this.date = delivery['date'];
     this.store = delivery['store'];
     this.deliveryId = delivery['deliveryId'];
