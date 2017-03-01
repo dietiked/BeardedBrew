@@ -14,7 +14,7 @@ import { LoaderComponent } from '../_directives/index';
 // Apps modules and services
 import { BeardedBrewNavigationService } from './index';
 // App pages
-import { BeardedBrewRouting } from './bearded-brew.routing';
+//import { BeardedBrewRouting } from './bearded-brew.routing';
 import {
   BeardedBrewHomeComponent,
   DeliveryService,
@@ -31,7 +31,7 @@ import {
     FormsModule,
     HttpModule,
     AuthenticationModule,
-    BeardedBrewRouting
+    //BeardedBrewRouting
   ],
   declarations: [
     LoaderComponent,
