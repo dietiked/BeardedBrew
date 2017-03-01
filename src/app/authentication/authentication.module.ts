@@ -13,7 +13,7 @@ import { AlertComponent, AlertService } from './alert/index';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AuthenticationRoutingModule
+    //AuthenticationRoutingModule
    ],
   declarations: [
     LoginComponent,
