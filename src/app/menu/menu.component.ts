@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthenticationService, NavigationService } from '../_services/index';
+import { NavigationService } from '../_services/index';
+import { AuthenticationService, AuthenticationMessage } from '../authentication/index';
 
 @Component({
   moduleId: module.id,
@@ -15,12 +16,14 @@ export class MenuComponent {
     private authenticationService: AuthenticationService,
     private navigationService: NavigationService
   ) {
-    this.authenticationService.authState().subscribe((state) => {
-      this.isUserLoggedIn = authenticationService.isUserLoggedIn();
-      if (state.result == 'logout') {
-        this.navigationService.goToLogin();
+    this.authenticationService.authState().subscribe(
+      (message: AuthenticationMessage) => {
+        this.isUserLoggedIn = authenticationService.isUserLoggedIn();
+        if (message.isLogout()) {
+          this.navigationService.goToLogin();
+        }
       }
-    });
+    );
   }
 
   signOut(): void {
