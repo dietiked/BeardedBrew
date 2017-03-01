@@ -24,5 +24,7 @@ export class DashboardComponent implements OnInit {
   startBeardedBrew() {
     this.navigationService.startBeardedBrew();
   }
-
+  startRecipes() {
+    this.navigationService.startRecipes();
+  }
 }

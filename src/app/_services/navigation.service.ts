@@ -19,7 +19,9 @@ export class NavigationService {
   public startBeardedBrew() {
     this.router.navigate(['/beardedBrew']);
   }
-
+  public startRecipes() {
+    this.router.navigate(['/recipes']);
+  }
   public goTo(url: string) {
     this.router.navigate([url]);
   }

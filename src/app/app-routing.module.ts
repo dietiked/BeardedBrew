@@ -4,12 +4,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './authentication/index';
 import { DashboardComponent } from './dashboard/index';
 import { AuthGuard } from './authentication/index';
+// Bearded brew
 import {
   BeardedBrewHomeComponent,
   DeliveriesComponent,
   DeliveryComponent,
   NewDeliveryComponent
 } from './beardedBrew/index';
+// Recipes
+import {
+  RecipesHomeComponent
+} from './recipes/index';
 
 const appRoutes: Routes = [
   // Application start
@@ -20,6 +25,8 @@ const appRoutes: Routes = [
   { path: 'beardedBrew/deliveries', component: DeliveriesComponent, canActivate: [AuthGuard] },
   { path: 'beardedBrew/deliveries/new', component: NewDeliveryComponent, canActivate: [AuthGuard] },
   { path: 'beardedBrew/deliveries/:id', component: DeliveryComponent, canActivate: [AuthGuard] },
+  // Recipes
+  { path: 'recipes', component: RecipesHomeComponent, canActivate: [AuthGuard] },
   // otherwise redirect to home
   { path: '**', redirectTo: 'login' }
 ];

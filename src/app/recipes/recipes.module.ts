@@ -12,16 +12,10 @@ import { NavigationService } from '../_services/index';
 import { DirectivesModule } from '../_directives/directives.module';
 
 // Apps modules and services
-import { BeardedBrewNavigationService } from './index';
+import { RecipesNavigationService } from './index';
 // App pages
-//import { BeardedBrewRouting } from './bearded-brew.routing';
 import {
-  BeardedBrewHomeComponent,
-  DeliveryService,
-  DeliveriesComponent,
-  DeliveryComponent,
-  NewDeliveryComponent,
-  ItemDeliveryService,
+  RecipesHomeComponent
 } from './index';
 
 // Definition
@@ -35,16 +29,11 @@ import {
     //BeardedBrewRouting
   ],
   declarations: [
-    BeardedBrewHomeComponent,
-    DeliveriesComponent,
-    DeliveryComponent,
-    NewDeliveryComponent,
+    RecipesHomeComponent
   ],
   providers: [
     NavigationService,
-    BeardedBrewNavigationService,
-    DeliveryService,
-    ItemDeliveryService,
+    RecipesNavigationService,
   ]
 })
-export class BeardedBrewModule { }
+export class RecipesModule { }
