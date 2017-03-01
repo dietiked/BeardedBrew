@@ -1,0 +1,24 @@
+<div class="col-md-12">
+  <h1>Deliveries <button class="btn btn-default" (click)="goToNewDelivery()">New delivery</button></h1>
+  <loader [isLoading]="isLoading"></loader>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table" *ngIf="!isLoading">
+        <tr>
+          <th>Date</th>
+          <th>Store</th>
+          <th>Number</th>
+          <th>Total</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let delivery of deliveries | async">
+          <td>{{delivery.date}}</td>
+          <td>{{delivery.store}}</td>
+          <td>{{delivery.deliveryId}}</td>
+          <td>{{delivery.total}}</td>
+          <td><span class="glyphicon glyphicon-edit" aria-hidden="true" (click)="edit(delivery.$key)"></span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
