@@ -15,7 +15,10 @@ import { DirectivesModule } from '../_directives/directives.module';
 import { RecipesNavigationService } from './index';
 // App pages
 import {
-  RecipesHomeComponent
+  RecipesCategoryService,
+  RecipesHomeComponent,
+  RecipesCategoriesComponent,
+  RecipesNewCategoryComponent
 } from './index';
 
 // Definition
@@ -29,11 +32,14 @@ import {
     //BeardedBrewRouting
   ],
   declarations: [
-    RecipesHomeComponent
+    RecipesHomeComponent,
+    RecipesCategoriesComponent,
+    RecipesNewCategoryComponent
   ],
   providers: [
     NavigationService,
     RecipesNavigationService,
+    RecipesCategoryService,
   ]
 })
 export class RecipesModule { }

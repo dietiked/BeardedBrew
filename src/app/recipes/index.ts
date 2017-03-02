@@ -2,6 +2,7 @@ export * from './_services/recipes-recipes.service';
 export * from './_services/recipes-navigation.service';
 export * from './_services/recipes-category.service';
 export * from './_services/recipes-book.service';
+export * from './_models/recipes-category';
 export * from './recipes/recipes-recipes.component';
 export * from './recipes/recipes-edit-recipe.component';
 export * from './recipes/recipes-new-recipe.component';
