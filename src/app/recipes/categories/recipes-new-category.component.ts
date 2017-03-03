@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { RecipesCategoryService, RecipesCategory } from '../index';
 
 @Component({
   moduleId: module.id,
@@ -7,5 +9,18 @@ import { Component } from '@angular/core';
 })
 
 export class RecipesNewCategoryComponent {
+
+  category = new RecipesCategory();
+
+  constructor(
+    private categoryService: RecipesCategoryService
+  ) {
+
+  }
+
+  public onSubmit() {
+    this.categoryService.addCategory(this.category.normalize());
+    this.category = new RecipesCategory();
+  }
 
 }

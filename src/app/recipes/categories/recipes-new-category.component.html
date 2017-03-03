@@ -1,0 +1,12 @@
+<div class="row" style="margin-bottom: 5px;">
+  <div class="col-md-12">
+    <form (ngSubmit)="onSubmit()" #newCategoryForm="ngForm">
+      <div class="input-group">
+        <input class="form-control" [(ngModel)]="category.name" required name="name" #name="ngModel" placeholder="nuova categoria">
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-primary" [disabled]="!newCategoryForm.form.valid">Salva</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
