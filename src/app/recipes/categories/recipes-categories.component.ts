@@ -24,7 +24,11 @@ export class RecipesCategoriesComponent {
   }
 
   public toggleNewCategory() {
-    this.isNewCategoryVisible = true;
+    if (this.isNewCategoryVisible) {
+      this.isNewCategoryVisible = false;
+    } else {
+      this.isNewCategoryVisible = true;      
+    }
   }
 
   public removeCategory(category) {

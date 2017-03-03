@@ -2,12 +2,19 @@
   <div class="col-md-12">
     <loader [isLoading]="isLoadingCategory"></loader>
     <div *ngIf="!isLoadingCategory">
-      <h4>Categorie <button class="btn btn-primary btn-xs" (click)="toggleNewCategory()">Aggiungi</button></h4>
+      <h4>Categorie&nbsp;
+        <button class="btn btn-primary btn-xs" (click)="toggleNewCategory()">
+          <span *ngIf="!isNewCategoryVisible">Aggiungi</span>
+          <span *ngIf="isNewCategoryVisible">Annulla</span>
+        </button>
+      </h4>
       <recipes-new-category *ngIf="isNewCategoryVisible"></recipes-new-category>
-      <table class="table-condensed">
+      <table class="table table-condensed">
         <tr *ngFor="let category of categories | async">
           <td>{{category.name}}</td>
-          <td><span class="glyphicon glyphicon-edit"></span></td>
+          <td>
+            <span class="glyphicon glyphicon-edit"></span>
+          </td>
           <td><span class="glyphicon glyphicon-trash" (click)="removeCategory(category)"></span></td>
         </tr>
       </table>

@@ -18,8 +18,8 @@ export class RecipesNewCategoryComponent {
 
   }
 
-  public addNewCategory(category: RecipesCategory) {
-    this.categoryService.addCategory(category.normalize());
+  public onSubmit() {
+    this.categoryService.addCategory(this.category.normalize());
     this.category = new RecipesCategory();
   }
 
